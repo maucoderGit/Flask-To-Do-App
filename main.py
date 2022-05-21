@@ -13,6 +13,16 @@ app = Flask(__name__)
 
 todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
 
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', error=error)
+
+
+@app.errorhandler(500)
+def server_error(error):
+    return render_template('500.html', error=error)
+
+
 @app.route('/')
 def index() -> Response:
     user_ip: str | None = request.remote_addr
