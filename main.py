@@ -1,4 +1,5 @@
 # Flask
+from ensurepip import bootstrap
 from flask import (
     Flask,
     Response,
@@ -8,8 +9,10 @@ from flask import (
     request,
     render_template
 )
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap: Bootstrap = Bootstrap(app)
 
 todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
 
