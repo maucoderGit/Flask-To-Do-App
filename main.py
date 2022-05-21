@@ -11,7 +11,7 @@ from flask import (
 
 app = Flask(__name__)
 
-todos = ['TODO1', 'TODO2', 'TODO3']
+todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
 
 @app.route('/')
 def index() -> Response:
@@ -30,7 +30,8 @@ def home() -> str:
 
     context: dict = {
         'user_ip': user_ip,
-        'todos': todos
+        'todos': todos,
+        "title": "Welcome"
     }
 
     return render_template('hello.html', **context)
