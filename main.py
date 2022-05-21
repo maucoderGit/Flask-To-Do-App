@@ -1,7 +1,17 @@
 # Flask
-from flask import Flask, Response, escape, make_response, redirect, request
+from flask import (
+    Flask,
+    Response,
+    escape,
+    make_response,
+    redirect,
+    request,
+    render_template
+)
 
 app = Flask(__name__)
+
+todos = ['TODO1', 'TODO2', 'TODO3']
 
 @app.route('/')
 def index() -> Response:
@@ -18,7 +28,12 @@ def home() -> str:
     user_ip = request.cookies.get('user_ip')
     user_ip = escape(user_ip)
 
-    return f'Hello World, This IP is {user_ip}'
+    context: dict = {
+        'user_ip': user_ip,
+        'todos': todos
+    }
+
+    return render_template('hello.html', **context)
 
 
 if __name__ == '__main__':
