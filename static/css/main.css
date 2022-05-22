@@ -1,7 +1,9 @@
-html * {
-    font-family: sans-serif;
-}
-
 img {
     max-width: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

@@ -9,11 +9,13 @@ from flask import (
     Flask,
     Response,
     escape,
+    flash,
     make_response,
     redirect,
     request,
     render_template,
-    session
+    session,
+    url_for
 )
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -28,6 +30,7 @@ app: Flask = Flask(__name__)
 bootstrap: Bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = urandom(20)
+app.config['WTF_CSRF_ENABLED']= False
 
 
 todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
@@ -46,26 +49,34 @@ def server_error(error):
 def index() -> Response:
     user_ip: str | None = request.remote_addr
 
-    response: Response = make_response(redirect('/hello'))
+    response: Response = make_response(redirect('/home'))
     session['user_ip'] = user_ip
 
     return response
 
 
-@app.route('/hello')
-def home() -> str:
+@app.route('/home', methods=['GET', 'POST'])
+def home():
     user_ip = session.get('user_ip')
-    user_ip = escape(user_ip)
-
     login_form = LoginForm()
-    context: dict = {
+    username = session.get('username')
+
+    context = {
         'user_ip': user_ip,
         'todos': todos,
-        "title": "Welcome",
-        'login_form': login_form
+        'login_form': login_form,
+        'username': username
     }
 
-    return render_template('hello.html', **context)
+    if login_form.validate_on_submit():
+        username = login_form.username.data
+        session['username'] = username
+
+        flash('Nombre de usario registrado con éxito!')
+
+        return redirect(url_for('index'))
+
+    return render_template('home.html', **context)
 
 
 if __name__ == '__main__':
