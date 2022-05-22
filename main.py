@@ -2,6 +2,7 @@
 from os import urandom
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
+import unittest
 
 # Flask
 from ensurepip import bootstrap
@@ -34,6 +35,12 @@ app.config['WTF_CSRF_ENABLED']= False
 
 
 todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
+
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
+
 
 @app.errorhandler(404)
 def not_found(error):
