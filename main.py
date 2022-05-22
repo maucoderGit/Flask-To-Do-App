@@ -1,3 +1,8 @@
+# Python
+from os import urandom
+from wtforms.fields import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired
+
 # Flask
 from ensurepip import bootstrap
 from flask import (
@@ -7,12 +12,23 @@ from flask import (
     make_response,
     redirect,
     request,
-    render_template
+    render_template,
+    session
 )
 from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
 
-app = Flask(__name__)
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Send')
+
+
+app: Flask = Flask(__name__)
 bootstrap: Bootstrap = Bootstrap(app)
+
+app.config['SECRET_KEY'] = urandom(20)
+
 
 todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
 
@@ -31,20 +47,22 @@ def index() -> Response:
     user_ip: str | None = request.remote_addr
 
     response: Response = make_response(redirect('/hello'))
-    response.set_cookie('user_ip', user_ip)
+    session['user_ip'] = user_ip
 
     return response
 
 
 @app.route('/hello')
 def home() -> str:
-    user_ip = request.cookies.get('user_ip')
+    user_ip = session.get('user_ip')
     user_ip = escape(user_ip)
 
+    login_form = LoginForm()
     context: dict = {
         'user_ip': user_ip,
         'todos': todos,
-        "title": "Welcome"
+        "title": "Welcome",
+        'login_form': login_form
     }
 
     return render_template('hello.html', **context)
