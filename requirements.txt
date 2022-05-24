@@ -3,3 +3,4 @@ Jinja2==3.1.2
 Flask-Bootstrap
 Flask-wtf
 Flask-testing
+blinker
