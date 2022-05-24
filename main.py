@@ -5,7 +5,6 @@ from app import create_app
 from app.forms import LoginForm
 
 # Flask
-from ensurepip import bootstrap
 from flask import (
     Response,
     flash,
