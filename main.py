@@ -1,15 +1,13 @@
 # Python
-from os import urandom
-from wtforms.fields import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
 import unittest
+
+from app import create_app
+from app.forms import LoginForm
 
 # Flask
 from ensurepip import bootstrap
 from flask import (
-    Flask,
     Response,
-    escape,
     flash,
     make_response,
     redirect,
@@ -18,21 +16,14 @@ from flask import (
     session,
     url_for
 )
+
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Send')
 
+app = create_app()
 
-app: Flask = Flask(__name__)
-bootstrap: Bootstrap = Bootstrap(app)
-
-app.config['SECRET_KEY'] = urandom(20)
 app.config['WTF_CSRF_ENABLED']= False
-
 
 todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
 

@@ -1,0 +1,38 @@
+{% extends 'bootstrap/base.html' %}
+    
+{% block head %}
+    {{ super() }}
+
+    {% if title %}
+	    <title> Flask | {{ title }}</title>
+	{% else %}
+	    <title> Flask | Bienvenido</title>
+	{% endif %}
+
+    <!--FontType -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+{% block body %}
+    {% block navbar %}
+        {% include 'nav_bar.html' %}
+    {% endblock %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" data-dismiss="alert" class="close">
+                &times;
+            </button>
+            {{message}}
+        </div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+    {% block scripts %}
+        {{ super() }}
+    {% endblock %}
+{% endblock %}
