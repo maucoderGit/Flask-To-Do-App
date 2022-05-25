@@ -16,6 +16,7 @@ from flask import (
     session,
     url_for
 )
+from flask_login import login_required
 
 app = create_app()
 
@@ -49,6 +50,7 @@ def index() -> Response:
 
 
 @app.route('/home', methods=['GET'])
+@login_required
 def home():
     user_ip = session.get('user_ip')
     username = session.get('username')
@@ -58,12 +60,6 @@ def home():
         'todos': get_todos(user_id=username),
         'username': username
     }
-
-    users = get_users()
-
-    for user in users:
-        print(user.id)
-        print(user.to_dict()['password'])
 
     return render_template('home.html', **context)
 

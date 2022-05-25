@@ -5,3 +5,5 @@ Flask-wtf
 Flask-testing
 blinker
 firebase-admin
+flask-login==0.4.1
+Werkzeug==2.0.0
