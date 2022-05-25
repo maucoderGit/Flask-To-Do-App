@@ -3,6 +3,7 @@ import unittest
 
 from app import create_app
 from app.forms import LoginForm
+from app.firestore_service import get_todos, get_users
 
 # Flask
 from flask import (
@@ -20,7 +21,6 @@ app = create_app()
 
 app.config['WTF_CSRF_ENABLED']= False
 
-todos = ['Buy Coffee', 'Make a video', 'Study at platzi']
 
 @app.cli.command()
 def test():
@@ -55,11 +55,18 @@ def home():
 
     context = {
         'user_ip': user_ip,
-        'todos': todos,
+        'todos': get_todos(user_id=username),
         'username': username
     }
 
+    users = get_users()
+
+    for user in users:
+        print(user.id)
+        print(user.to_dict()['password'])
+
     return render_template('home.html', **context)
+
 
 
 if __name__ == '__main__':
