@@ -16,10 +16,6 @@ from flask import (
     url_for
 )
 
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-
-
 app = create_app()
 
 app.config['WTF_CSRF_ENABLED']= False
@@ -52,26 +48,16 @@ def index() -> Response:
     return response
 
 
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET'])
 def home():
     user_ip = session.get('user_ip')
-    login_form = LoginForm()
     username = session.get('username')
 
     context = {
         'user_ip': user_ip,
         'todos': todos,
-        'login_form': login_form,
         'username': username
     }
-
-    if login_form.validate_on_submit():
-        username = login_form.username.data
-        session['username'] = username
-
-        flash('Username registed successfully')
-
-        return redirect(url_for('index'))
 
     return render_template('home.html', **context)
 
