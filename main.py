@@ -8,7 +8,6 @@ from app.firestore_service import get_todos, get_users
 # Flask
 from flask import (
     Response,
-    flash,
     make_response,
     redirect,
     request,
@@ -16,11 +15,11 @@ from flask import (
     session,
     url_for
 )
-from flask_login import login_required
+from flask_login import current_user, login_required
 
 app = create_app()
 
-app.config['WTF_CSRF_ENABLED']= False
+app.config['WTF_CSRF_ENABLED'] = False
 
 
 @app.cli.command()
@@ -53,14 +52,14 @@ def index() -> Response:
 @login_required
 def home():
     user_ip = session.get('user_ip')
-    username = session.get('username')
+    username = current_user.id
 
     context = {
         'user_ip': user_ip,
         'todos': get_todos(user_id=username),
         'username': username
     }
-
+    
     return render_template('home.html', **context)
 
 
