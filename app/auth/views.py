@@ -1,5 +1,5 @@
 from flask import flash, redirect, render_template, session, url_for
-from flask_login import current_user, login_user
+from flask_login import current_user, login_required, login_user, logout_user
 
 from app.models import UserData, UserModel
 from . import auth
@@ -47,3 +47,12 @@ def login():
         return redirect(url_for('index'))
 
     return render_template('login.html', **context)
+
+
+@auth.route('logout')
+@login_required
+def logout():
+    logout_user()
+    flash('See you later, space cowboy')
+
+    return redirect(url_for('auth.login'))
