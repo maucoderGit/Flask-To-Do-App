@@ -52,5 +52,13 @@ def put_todo(user_id: str, description: str) -> None:
         .collection('To-Do')
     
     todos_collection_red.add({
-        'description': description
+        'Description': description,
+        'done': False
     })
+
+
+def delete_todo(user_id, todo_id):
+    todo_ref = db.document(f'users/{user_id}/To-Do/{todo_id}')
+    todo_ref.delete()
+
+    # todo_ref = db.collection('users').collection('todos').document(todo_id)

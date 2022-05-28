@@ -1,9 +1,10 @@
 # Python
+from crypt import methods
 import unittest
 
 from app import create_app
-from app.forms import LoginForm, ToDoForm
-from app.firestore_service import get_todos, get_users, put_todo
+from app.forms import DeleteTodoForm, LoginForm, ToDoForm
+from app.firestore_service import delete_todo, get_todos, get_users, put_todo
 
 # Flask
 from flask import (
@@ -55,16 +56,18 @@ def home():
     user_ip = session.get('user_ip')
     username = current_user.id
     todo_form = ToDoForm()
+    delete_form = DeleteTodoForm()
 
     context = {
         'user_ip': user_ip,
         'todos': get_todos(user_id=username),
         'todo_form': todo_form,
-        'username': username
+        'username': username,
+        'delete_form': delete_form,
     }
 
     if todo_form.validate_on_submit():
-        put_todo(user_id= username, description=todo_form.description.data)
+        put_todo(user_id= username, description=todo_form.Description.data)
 
         flash('Your task was added sucessfully!')
 
@@ -72,6 +75,13 @@ def home():
 
     return render_template('home.html', **context)
 
+
+@app.route('/todos/delete/<todo_id>', methods=['POST'])
+def delete(todo_id):
+    user_id = current_user.id
+    delete_todo(user_id=user_id, todo_id=todo_id)
+
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':

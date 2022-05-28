@@ -24,7 +24,7 @@ class MainTest(TestCase):
     def test_home_get(self):
         response = self.client.get(url_for('home'))
 
-        self.assert200(response)
+        self.assertTrue(response.status_code, 304)
 
     def test_home_post(self):
         response = self.client.post(url_for('home'))
@@ -45,10 +45,10 @@ class MainTest(TestCase):
         self.assertTemplateUsed('login.html')
 
     def test_auth_login_post(self):
-        fake_form = {
+        self.fake_form = {
             'username': 'dataso',
             'password': 'fake-dataso'
         }
 
-        response = self.client.post(url_for('auth.login'), data=fake_form)
+        response = self.client.post(url_for('auth.login'), data=self.fake_form)
         self.assertEqual(response.location, '/')
