@@ -2,12 +2,13 @@
 import unittest
 
 from app import create_app
-from app.forms import LoginForm
-from app.firestore_service import get_todos, get_users
+from app.forms import LoginForm, ToDoForm
+from app.firestore_service import get_todos, get_users, put_todo
 
 # Flask
 from flask import (
     Response,
+    flash,
     make_response,
     redirect,
     request,
@@ -48,18 +49,27 @@ def index() -> Response:
     return response
 
 
-@app.route('/home', methods=['GET'])
+@app.route('/home', methods=['GET', 'POST'])
 @login_required
 def home():
     user_ip = session.get('user_ip')
     username = current_user.id
+    todo_form = ToDoForm()
 
     context = {
         'user_ip': user_ip,
         'todos': get_todos(user_id=username),
+        'todo_form': todo_form,
         'username': username
     }
-    
+
+    if todo_form.validate_on_submit():
+        put_todo(user_id= username, description=todo_form.description.data)
+
+        flash('Your task was added sucessfully!')
+
+        return redirect(url_for('home'))
+
     return render_template('home.html', **context)
 
 
