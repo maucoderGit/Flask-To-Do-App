@@ -3,8 +3,8 @@ from crypt import methods
 import unittest
 
 from app import create_app
-from app.forms import DeleteTodoForm, LoginForm, ToDoForm
-from app.firestore_service import delete_todo, get_todos, get_users, put_todo
+from app.forms import DeleteTodoForm, LoginForm, ToDoForm, UpdateTodoForm
+from app.firestore_service import delete_todo, get_todos, get_users, put_todo, update_todo
 
 # Flask
 from flask import (
@@ -57,6 +57,7 @@ def home():
     username = current_user.id
     todo_form = ToDoForm()
     delete_form = DeleteTodoForm()
+    update_form = UpdateTodoForm()
 
     context = {
         'user_ip': user_ip,
@@ -64,6 +65,7 @@ def home():
         'todo_form': todo_form,
         'username': username,
         'delete_form': delete_form,
+        'update_form': update_form
     }
 
     if todo_form.validate_on_submit():
@@ -80,6 +82,15 @@ def home():
 def delete(todo_id):
     user_id = current_user.id
     delete_todo(user_id=user_id, todo_id=todo_id)
+
+    return redirect(url_for('home'))
+
+
+@app.route('/todos/update/<todo_id>/<int:done>', methods=['POST'])
+def update(todo_id, done):
+    user_id = current_user.id
+
+    update_todo(user_id=user_id, todo_id=todo_id, done=done)
 
     return redirect(url_for('home'))
 
