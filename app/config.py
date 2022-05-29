@@ -10,11 +10,12 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     FLASK_APP="main.py"
-    FLASK_DEBUG=0
+    FLASK_DEBUG=1
     GOOGLE_CLOUD_PROJECT='my-flask-to-do-list'
 
 class ProductionConfig(Config):
     DEBUG = False
+    FLASK_DEBUG=0
     GOOGLE_CLOUD_PROJECT='my-flask-to-do-list'
 
 config = {
