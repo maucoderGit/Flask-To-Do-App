@@ -18,6 +18,12 @@ from flask import (
     url_for
 )
 from flask_login import current_user, login_required
+from decouple import config as config_decouple
+
+
+#enviroment = config['development']
+#if config_decouple('PRODUCTION', default=False):
+#    enviroment = config['production']
 
 app = create_app()
 
