@@ -1,5 +1,4 @@
 # Python
-from crypt import methods
 import os
 import unittest
 
