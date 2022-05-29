@@ -103,4 +103,4 @@ def update(todo_id, done):
 
 
 if __name__ == '__main__':
-    app.run(port = 5000, debug = True)
+    app.run()
