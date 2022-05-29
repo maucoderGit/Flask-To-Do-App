@@ -15,7 +15,7 @@ def load_user(username):
     return UserModel.query(username)
 
 
-def create_app():
+def create_app(enviroment):
     app = Flask(__name__)
     bootstrap = Bootstrap(app)
 
@@ -24,5 +24,7 @@ def create_app():
     login_manger.init_app(app)
 
     app.register_blueprint(auth)
+
+    app.config.from_object(enviroment)
 
     return app

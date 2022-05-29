@@ -1,10 +1,12 @@
 # Python
 from crypt import methods
+import os
 import unittest
 
 from app import create_app
 from app.forms import DeleteTodoForm, LoginForm, ToDoForm, UpdateTodoForm
 from app.firestore_service import delete_todo, get_todos, get_users, put_todo, update_todo
+from app.config import config
 
 # Flask
 from flask import (
@@ -18,8 +20,14 @@ from flask import (
     url_for
 )
 from flask_login import current_user, login_required
+from decouple import config as config_decouple
 
-app = create_app()
+
+enviroment = config['development']
+if config_decouple('PRODUCTION', default=False):
+    enviroment = config['production']
+
+app = create_app(enviroment)
 
 app.config['WTF_CSRF_ENABLED'] = False
 
@@ -96,4 +104,5 @@ def update(todo_id, done):
 
 
 if __name__ == '__main__':
-    app.run(port = 5000, debug = True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
