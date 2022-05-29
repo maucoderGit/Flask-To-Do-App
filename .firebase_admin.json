@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "my-flask-to-do-list",
+  "private_key_id": "d57796d8518604211f6caf71be05dec84a27e0bf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDRyFO25rBnRBzW\npdsWKdpl9F3Ozw7PbP3hrFbgOPrpJw2aERMXOEtvcGZE8cbL/hUbzOXBNl83kjoZ\nFhrDha+BAf/ISZ6FgCSN1zwtu57Op87mAk4wibw1p0BrXP0vx+UfEq8tTwYxPkx4\nwQ7xCsJl0KLz19w1q7NjR6iwgf2ABybNWi6Nn1SKb7IrQh5x/3yfHSwII0O5TpOr\nk5B9NZXvmni8tZFD0zfEKwzHs0ii1ZPpWkhIvAjt0wYNk2ErmdNJUXzER2k2l9W5\nXMNQQcl2YQmwunThOhROw2dgUoZdwSeRmDLeLK3TlBZDWwPlsZImxToQCxZnl1YO\n2PVbaM7dAgMBAAECggEARXC/0TvEabJgr2agQlJhUj1U7feZKe0kjtaKvVbvK007\nkeOUA6wlQEKe/7RefzjgSN8GsHGsjAsRwysPeegfI5+DSQuhdwRnVTJJX8QKudJP\nSNC7jBKTo9j0mHVj87SB8cqwBNnzLUq3aoNRTFWo6qXowrmR0Yw/6Z2XR7IHtSBP\nemACbf0xnj7v9vLKCmgtFFPOahAyRU6NcumkptGmaasJYCkuuvyfNxAeaFUsGOy/\nzaNUZ+kfj7Qhy/RSqDWFvuCmuPNdc5qJkVmUDcDVoOD1yVDolwwfju1ZqK5egwz/\npSNuZ/d9ZfMf0S5EYRuJndOYiB69mzdDZIz89CF86wKBgQDodKW8rz0h3FBiS0WU\nfaTHdOmzITDoUowt23qjybmEx9oWL1ifqZSg8mpZECcoT7ARZBZQ28lmEMvQoL32\nB6Z8uSV9MdYq2slcNoQyCgTXlC6LZSmk9jRTZRbZrB2WKjDTHLmIW4g3oqntvIB8\n7IIeNXaSuwdEdI9ycHOHFouinwKBgQDnB8mBbZKafIFctCfJ8R5MuNskAkmsQp8g\nymP+lGjezbTR18oyUmQvGylQ8fLMuJl8MNdaCS8J6+sfc3ng7e+xNkNVSqhBCCgr\nl4r0d7za1AkHhegIZCMc1ZQSYrFQ7Wh4cn83Cn5+inPn0c4ivrmvObJRl071dtpU\nuzcQwh+5AwKBgC6z2OSa1I5sBB5rfxRBVgzYuWdK4NecVhuUgAROMB60RGW2p3iU\nio73hVRVgXiA4h/sWutt7P27nCdTVDcM/G8Mh7Kqg5vijxgev9qJ1sU1OVC6R26k\nJIkowzmCcgNMgLi5ibESqsB6xudDuxDeN5o4JZV/TAt926AjZaKbbfyDAoGBAJ+V\n23WSENCx7FHzCAEQk1N/5bAL/IQHSRBHfacfMQmmop7JJpx4GUgIxRNq7cLISQ1m\nV3uUGHAMDNAe3jOnaAjLaNuDxJGXZtglyBBynXuzN8GAl/Uj5rVGOxAwKDe0ppN8\n069bimEyljmtzWxmvrDxc+G0WRBp1wrsf28OCQetAoGAQqOJb+CMbLY9vWnBnDcy\n9ejy2uvePTIJpUlOSj7Q0I6B7hLOZl1nk032F7cteOlx9an2nH3vPOxXrFhAbqQr\nZ5VFGK+GZxKUqpyNg31rYJqZfdHlhFxgRFsreWBxpr7wq193bTZbdqu4FbU01GJx\nlTjgKpYHUu8lKDA8dvi0iR0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "herokuflask@my-flask-to-do-list.iam.gserviceaccount.com",
+  "client_id": "107675342982257195007",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/herokuflask%40my-flask-to-do-list.iam.gserviceaccount.com"
+}
