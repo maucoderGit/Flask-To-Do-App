@@ -5,7 +5,7 @@ from firebase_admin import firestore
 credential = credentials.ApplicationDefault()
 firebase_admin.initialize_app(credential)
 
-db= firestore.client()
+db = firestore.client()
 
 def get_users():
     """
