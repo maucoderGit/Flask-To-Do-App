@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Firebase
+.firebase_admin.json
+firebase_admin.json
+
 # C extensions
 *.so
 *.sh
