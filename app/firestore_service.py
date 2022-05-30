@@ -1,6 +1,6 @@
 from decouple import config as config_decouple
 from app.config import config
-import osW
+import os
 
 import firebase_admin
 from firebase_admin import credentials
