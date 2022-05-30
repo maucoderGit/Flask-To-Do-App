@@ -10,7 +10,7 @@ from firebase_admin import firestore
 enviroment = config['development']
 if config_decouple('PRODUCTION', default=False):
     enviroment = config['production']
-    firebase_admin.initialize_app(options=os.environ['GOOGLE_APPLICATION_CREDENTIALS'])
+    firebase_admin.initialize_app(os.environ['GOOGLE_APPLICATION_CREDENTIALS'])
 else:
     credential = credentials.ApplicationDefault()
     firebase_admin.initialize_app(credential)
