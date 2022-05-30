@@ -1,5 +1,3 @@
-from decouple import config as config_decouple
-from app.config import config
 import os
 
 import firebase_admin
@@ -7,13 +5,8 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 
-enviroment = config['development']
-if config_decouple('PRODUCTION', default=False):
-    enviroment = config['production']
-    firebase_admin.initialize_app(os.environ['GOOGLE_APPLICATION_CREDENTIALS'])
-else:
-    credential = credentials.ApplicationDefault()
-    firebase_admin.initialize_app(credential)
+credential = credentials.ApplicationDefault()
+firebase_admin.initialize_app(credential)
 
 db = firestore.client()
 
